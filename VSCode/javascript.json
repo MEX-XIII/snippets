@@ -1,0 +1,54 @@
+{
+	"Console Log": {
+		"prefix": "log",
+		"body": "console.log($1);",
+		"description": "Faz um console.log"
+	},
+
+	"Object Default":{
+		"prefix": "var",
+		"body":[
+			"var ${variavel} = {",
+			"	${conteudo}",
+			"};"
+		],
+		"description": "Cria um objeto javascript" 
+	},
+
+	"Object Document Ready Full":{
+		"prefix": "js",
+		"body": [
+			"var ${1:NomeObjeto} = {",
+			" ",
+			"	${2: Metodo}: function(){",
+			"		${3: Codificando}",
+			"	},",
+			" ",
+			"	ready: function(){",
+			"		${1:NomeObjeto}.${2:Metodo}();",
+			"    }",
+			"}",
+			" ",
+			"$(document).ready(${1:NomeObjeto}.ready);"
+		],
+		"description": "Cria um objeto com metodo e document ready"
+	},
+
+	"JQuery Selector":{
+		"prefix": "$()",
+		"body": "$(${1:}).${2:};",
+		"description": "Cria um seletor jquery"
+	},
+
+	"Function":{
+		"prefix": "function",
+		"body": [
+			"function ${1:NomeFunção}(${3:}){",
+			"	${2:}",
+			"}"
+		],
+		"description": "Cria uma função"
+	}
+
+
+}

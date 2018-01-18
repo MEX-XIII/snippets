@@ -1,0 +1,95 @@
+{
+	/*
+	// Place your snippets for HTML here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+	"Tag": {
+		"prefix": "php",
+		"body": "<?php ${1:} ?>",
+		"description": "Cria uma tag php"
+	},
+
+	"Debug": {
+		"prefix": "debug",
+		"body": "debug(${1:});exit;"
+	},
+
+	"Controller": {
+		"prefix": "this->model",
+		"body": "$$this->${1:Model}->${2:Method};",
+		"description": "Cria uma chamada de um method da model"
+	},
+
+	"View Variable": {
+		"prefix": "this->set",
+		"body": "$$this->set('${1:Variavel}', ${1:Variavel});",
+		"description": "Cria um method para setar variavel na view"
+	},
+
+	"Function": {
+		"prefix": "public",
+		"body": [
+			"public function ${1: NomeFunção}(${3:}){",
+			"	${2:}",
+			"};"
+		],
+		"description": "Cria uma função"
+	},
+
+	"Cake Controller Create": {
+		"prefix": "controller",
+		"body": [
+			"<?php",
+			" ",
+			"class ${1:NomeDaClasse} extends AppController{",
+			" ",
+			"	public $$uses = ['${2:ModelASerUtilizada}'];",
+			" ",
+			"	public $$components = ['${3:ChamaAPI}'];",
+			" ",
+			"	public function ${4:NomeDaFunção}(){",
+			" ",
+			"		${5:Conteudo}",
+			" ",
+			"	};",
+			" ",
+			"?>"
+		],
+		"description": "Cria um controller"
+	},
+
+	"Cake model Create": {
+		"prefix": "model",
+		"body": [
+			"<?php",
+            "class ${1:NomeDaModel} extends AppModel{",
+			" ",
+			"//Setar manualmente tabela.",
+			"//public function $$useTable = 'nomeComoEstaNoBanco';",
+			" ",
+			"//Switch de Banco.",
+			"//public $$useDbConfig = 'nucleos';",
+			" ",
+			"    public $$name = '${1:NomeDaModel}';",
+			" ",
+			"    public $$relationship = ['${3:ModelPertencente}'];",
+			" ",
+			"    public function get${1:NomeDaModel}s(){",
+			"		",
+            "    }",
+            "}",
+            "?>"
+		]
+	}
+}
