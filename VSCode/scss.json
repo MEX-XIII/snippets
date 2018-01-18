@@ -1,0 +1,26 @@
+{
+	"Main Create": {
+		"prefix": "main",
+		"body": [
+			"//VENDORS",
+			"@import 'vendors/${1:}';",
+			"",
+			"//BASE",
+			"@import 'base/${2:}';",
+			"",
+			"//HELPERS",
+			"@import 'helpers/${3:}';",
+			"",
+			"//COMPONENTS",
+			"@import 'components/${4:}';",
+			"",
+			"//LAYOUTS",
+			"@import 'layouts/${5:}';",
+			"",
+			"//PAGES",
+			"@import 'pages/${6:}';",
+			""
+		],
+		"description": "Cria a base do main do sass"
+	}
+}
