@@ -1,95 +1,107 @@
 {
-	/*
-	// Place your snippets for HTML here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	"Print to console": {
-		"prefix": "log",
-		"body": [
-			"console.log('$1');",
-			"$2"
-		],
-		"description": "Log output to console"
-	}
-*/
-	"Tag": {
-		"prefix": "php",
-		"body": "<?php ${1:} ?>",
-		"description": "Cria uma tag php"
-	},
-
-	"Debug": {
-		"prefix": "debug",
-		"body": "debug(${1:});exit;"
-	},
-
-	"Controller": {
-		"prefix": "this->model",
-		"body": "$$this->${1:Model}->${2:Method};",
-		"description": "Cria uma chamada de um method da model"
-	},
-
-	"View Variable": {
-		"prefix": "this->set",
-		"body": "$$this->set('${1:Variavel}', ${1:Variavel});",
-		"description": "Cria um method para setar variavel na view"
-	},
-
-	"Function": {
-		"prefix": "public",
-		"body": [
-			"public function ${1: NomeFunção}(${3:}){",
-			"	${2:}",
-			"};"
-		],
-		"description": "Cria uma função"
-	},
-
-	"Cake Controller Create": {
-		"prefix": "controller",
-		"body": [
-			"<?php",
-			" ",
-			"class ${1:NomeDaClasse} extends AppController{",
-			" ",
-			"	public $$uses = ['${2:ModelASerUtilizada}'];",
-			" ",
-			"	public $$components = ['${3:ChamaAPI}'];",
-			" ",
-			"	public function ${4:NomeDaFunção}(){",
-			" ",
-			"		${5:Conteudo}",
-			" ",
-			"	};",
-			" ",
-			"?>"
-		],
-		"description": "Cria um controller"
-	},
-
-	"Cake model Create": {
-		"prefix": "model",
-		"body": [
-			"<?php",
-            "class ${1:NomeDaModel} extends AppModel{",
-			" ",
-			"//Setar manualmente tabela.",
-			"//public function $$useTable = 'nomeComoEstaNoBanco';",
-			" ",
-			"//Switch de Banco.",
-			"//public $$useDbConfig = 'nucleos';",
-			" ",
-			"    public $$name = '${1:NomeDaModel}';",
-			" ",
-			"    public $$relationship = ['${3:ModelPertencente}'];",
-			" ",
-			"    public function get${1:NomeDaModel}s(){",
-			"		",
-            "    }",
-            "}",
-            "?>"
-		]
-	}
+  "PHP tag": {
+    "prefix": "php",
+    "body": "<?php $1 ?>",
+    "description": "PHP tag"
+  },
+  "PHP debug exit": {
+    "prefix": "debug_exit",
+    "body": "debug($1);exit;",
+    "description": "PHP debug exit"
+  },
+  "PHP debug": {
+    "prefix": "debug",
+    "body": "debug($1);",
+    "description": "PHP debug"
+  },
+  "PHP function": {
+    "prefix": "function",
+    "body": "$1 function $2($3){\n    $4\n};",
+    "description": "PHP function"
+  },
+  "PHP cake variable": {
+    "prefix": "set",
+    "body": "$this->set('$1', $2);",
+    "description": "PHP cake variable"
+  },
+  "PHP cake variable compact": {
+    "prefix": "set_compact",
+    "body": "$this->set(compact('$1'));",
+    "description": "PHP cake variable compact"
+  },
+  "PHP cake controller": {
+    "prefix": "controller",
+    "body": "<?php\nclass $1 extends AppController{\n\n  //Models que irão ser utilizadas.\n  public $uses = ['$2'];\n\n  public function beforeFilter(){\n    parent::beforeFilter();\n  };\n\n  public function index(){\n\n  };\n\n  public function create(){\n\n  };\n\n  public function edit(){\n\n  };\n}\n\n?>",
+    "description": "PHP cake controller"
+  },
+  "PHP cake model": {
+    "prefix": "model",
+    "body": "<?php\nclass $1 extends AppModel{\n\n}\n?>",
+    "description": "PHP cake model"
+  },
+  "PHP cake model method before save": {
+    "prefix": "model_method_before_save",
+    "body": "public function beforeSave($options = []) {\n\t\t\t  $this->data[$this->alias]['$2'];\n\n\t\t\t  return true;\n}",
+    "description": "PHP cake model method before save"
+  },
+  "PHP cake model method after find": {
+    "prefix": "model_method_after_find",
+    "body": "public function afterFind($results, $primary = false) {\n\t\t\t  foreach ($results as $key => $value) {\n\t\t\t\t  $results[$key][$this->alias]['$1'];\n\t\t\t  }\n\n\t\t\t  return $results;\n}",
+    "description": "PHP cake model method after find"
+  },
+  "PHP cake model method findAll": {
+    "prefix": "method_findAll",
+    "body": "\t  \t$this->find('all', [\n\t$1\n]);",
+    "description": "PHP cake model method findAll"
+  },
+  "PHP cake model method findFirst": {
+    "prefix": "method_findFirst",
+    "body": "\t  \t$this->find('first', [\n\t$1\n]);",
+    "description": "PHP cake model method findFirst"
+  },
+  "PHP cake method options conditions": {
+    "prefix": "find_conditions",
+    "body": "\t  \t'conditions' => [\n\t$1\n]",
+    "description": "PHP cake method options conditions"
+  },
+  "PHP cake method options order": {
+    "prefix": "find_order",
+    "body": "\t  \t'order' => [\n\t$1\n]",
+    "description": "PHP cake method options order"
+  },
+  "PHP cake method options group": {
+    "prefix": "find_group",
+    "body": "\t  \t'group' => [\n\t$1\n]",
+    "description": "PHP cake method options group"
+  },
+  "PHP cake model associated belongsTo": {
+    "prefix": "model_associated_belongsTo",
+    "body": "public $belongsTo = [\n\t'$1',\n];",
+    "description": "PHP cake model associated belongsTo"
+  },
+  "PHP cake model associated hasMany": {
+    "prefix": "model_associated_hasMany",
+    "body": "public $hasMany = [\n\t'$1',\n];",
+    "description": "PHP cake model associated hasMany"
+  },
+  "PHP cake model associated hasOne": {
+    "prefix": "model_associated_hasOne",
+    "body": "public $hasOne = [\n\t'$1',\n];",
+    "description": "PHP cake model associated hasOne"
+  },
+  "PHP atribute messages": {
+    "prefix": "atribute_messages",
+    "body": "public $messages = [\n    'saveSuccess' => \"$1 salv$2 com sucesso!\",\n    'saveError' => \"Erro ao salvar, tente novamente!\",\n    'notFound' => \"$1 não encontrada!\",\n];",
+    "description": "PHP atribute messages"
+  },
+  "PHP atribute states": {
+    "prefix": "atribute_states",
+    "body": "public $states = [\n\t        \"AC\" => \"Acre\",\n\t        \"AL\" => \"Alagoas\",\n\t        \"AM\" => \"Amazonas\",\n\t        \"AP\" => \"Amapá\",\n\t        \"BA\" => \"Bahia\",\n\t        \"CE\" => \"Ceará\",\n\t        \"DF\" => \"Distrito Federal\",\n\t        \"ES\" => \"Espírito Santo\",\n\t        \"GO\" => \"Goiás\",\n\t        \"MA\" => \"Maranhão\",\n\t        \"MT\" => \"Mato Grosso\",\n\t        \"MS\" => \"Mato Grosso do Sul\",\n\t        \"MG\" => \"Minas Gerais\",\n\t        \"PA\" => \"Pará\",\n\t        \"PB\" => \"Paraíba\",\n\t        \"PR\" => \"Paraná\",\n\t        \"PE\" => \"Pernambuco\",\n\t        \"PI\" => \"Piauí\",\n\t        \"RJ\" => \"Rio de Janeiro\",\n\t        \"RN\" => \"Rio Grande do Norte\",\n\t        \"RO\" => \"Rondônia\",\n\t        \"RS\" => \"Rio Grande do Sul\",\n\t        \"RR\" => \"Roraima\",\n\t        \"SC\" => \"Santa Catarina\",\n\t        \"SE\" => \"Sergipe\",\n\t        \"SP\" => \"São Paulo\",\n\t        \"TO\" => \"Tocantins\"\n];",
+    "description": "PHP atribute states"
+  },
+  "PHP atributes countries": {
+    "prefix": "atribute_countries",
+    "body": "public $countries = [\n    \"África do Sul\",\n    \"Albânia\",\n    \"Alemanha\",\n    \"Andorra\",\n    \"Angola\",\n    \"Anguilla\",\n    \"Antigua\",\n    \"Arábia Saudita\",\n    \"Argentina\",\n    \"Armênia\",\n    \"Aruba\",\n    \"Austrália\",\n    \"Áustria\",\n    \"Azerbaijão\",\n    \"Bahamas\",\n    \"Bahrein\",\n    \"Bangladesh\",\n    \"Barbados\",\n    \"Bélgica\",\n    \"Benin\",\n    \"Bermudas\",\n    \"Botsuana\",\n    \"Brasil\",\n    \"Brunei\",\n    \"Bulgária\",\n    \"Burkina Fasso\",\n    \"Cabo Verde\",\n    \"Camarões\",\n    \"Camboja\",\n    \"Canadá\",\n    \"Cazaquistão\",\n    \"Chade\",\n    \"Chile\",\n    \"China\",\n    \"Cidade do Vaticano\",\n    \"Colômbia\",\n    \"Congo\",\n    \"Coréia do Sul\",\n    \"Costa do Marfim\",\n    \"Costa Rica\",\n    \"Croácia\",\n    \"Dinamarca\",\n    \"Djibuti\",\n    \"Dominica\",\n    \"EUA\",\n    \"Egito\",\n    \"El Salvador\",\n    \"Emirados Árabes\",\n    \"Equador\",\n    \"Eritréia\",\n    \"Escócia\",\n    \"Eslováquia\",\n    \"Eslovênia\",\n    \"Espanha\",\n    \"Estônia\",\n    \"Etiópia\",\n    \"Fiji\",\n    \"Filipinas\",\n    \"Finlândia\",\n    \"França\",\n    \"Gabão\",\n    \"Gâmbia\",\n    \"Gana\",\n    \"Geórgia\",\n    \"Gibraltar\",\n    \"Granada\",\n    \"Grécia\",\n    \"Guadalupe\",\n    \"Guam\",\n    \"Guatemala\",\n    \"Guiana\",\n    \"Guiana Francesa\",\n    \"Guiné-bissau\",\n    \"Haiti\",\n    \"Holanda\",\n    \"Honduras\",\n    \"Hong Kong\",\n    \"Hungria\",\n    \"Iêmen\",\n    \"Ilhas Cayman\",\n    \"Ilhas Cook\",\n    \"Ilhas Curaçao\",\n    \"Ilhas Marshall\",\n    \"Ilhas Turks & Caicos\",\n    \"Ilhas Virgens (brit.)\",\n    \"Ilhas Virgens(amer.)\",\n    \"Ilhas Wallis e Futuna\",\n    \"Índia\",\n    \"Indonésia\",\n    \"Inglaterra\",\n    \"Irlanda\",\n    \"Islândia\",\n    \"Israel\",\n    \"Itália\",\n    \"Jamaica\",\n    \"Japão\",\n    \"Jordânia\",\n    \"Kuwait\",\n    \"Latvia\",\n    \"Líbano\",\n    \"Liechtenstein\",\n    \"Lituânia\",\n    \"Luxemburgo\",\n    \"Macau\",\n    \"Macedônia\",\n    \"Madagascar\",\n    \"Malásia\",\n    \"Malaui\",\n    \"Mali\",\n    \"Malta\",\n    \"Marrocos\",\n    \"Martinica\",\n    \"Mauritânia\",\n    \"Mauritius\",\n    \"México\",\n    \"Moldova\",\n    \"Mônaco\",\n    \"Montserrat\",\n    \"Nepal\",\n    \"Nicarágua\",\n    \"Niger\",\n    \"Nigéria\",\n    \"Noruega\",\n    \"Nova Caledônia\",\n    \"Nova Zelândia\",\n    \"Omã\",\n    \"Palau\",\n    \"Panamá\",\n    \"Papua-nova Guiné\",\n    \"Paquistão\",\n    \"Peru\",\n    \"Polinésia Francesa\",\n    \"Polônia\",\n    \"Porto Rico\",\n    \"Portugal\",\n    \"Qatar\",\n    \"Quênia\",\n    \"Rep. Dominicana\",\n    \"Rep. Tcheca\",\n    \"Reunion\",\n    \"Romênia\",\n    \"Ruanda\",\n    \"Rússia\",\n    \"Saipan\",\n    \"Samoa Americana\",\n    \"Senegal\",\n    \"Serra Leone\",\n    \"Seychelles\",\n    \"Singapura\",\n    \"Síria\",\n    \"Sri Lanka\",\n    \"St. Kitts & Nevis\",\n    \"St. Lúcia\",\n    \"St. Vincent\",\n    \"Sudão\",\n    \"Suécia\",\n    \"Suiça\",\n    \"Suriname\",\n    \"Tailândia\",\n    \"Taiwan\",\n    \"Tanzânia\",\n    \"Togo\",\n    \"Trinidad & Tobago\",\n    \"Tunísia\",\n    \"Turquia\",\n    \"Ucrânia\",\n    \"Uganda\",\n    \"Uruguai\",\n    \"Venezuela\",\n    \"Vietnã\",\n    \"Zaire\",\n    \"Zâmbia\",\n    \"Zimbábue\"\n];\n",
+    "description": "PHP atributes countries"
+  }
 }
