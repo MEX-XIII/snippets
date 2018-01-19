@@ -1,3 +1,25 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
 
 '.source.js':
     'Console log':
@@ -33,7 +55,7 @@
         'prefix': '$()'
         'body': '$("$1").$2'
 
-    'Funcions':
+    'Functions':
         'prefix': 'function'
         'body': """
             function $1($3){
@@ -42,30 +64,34 @@
 
         """
 
-################################################################################
+
+	# -------------> PHP
 
 '.text.php, .text.html.php, .text.ctp.php':
+
+	# DEFAULT
+
     'PHP tag':
         'prefix': 'php'
         'body': '<?php $1 ?>'
 
-    'PHP debug':
-      'prefix': 'deb'
+    'PHP debug exit':
+      'prefix': 'debug_exit'
       'body': 'debug($1);exit;'
 
+    'PHP debug':
+      'prefix': 'debug'
+      'body': 'debug($1);'
+
     'PHP function':
-      'prefix': 'public'
+      'prefix': 'function'
       'body': """
-            public function $1($3){
-                $2
+            $1 function $2($3){
+                $4
             };
       """
 
-    'PHP cake controller + method':
-      'prefix': 'this'
-      'body': """
-            $this->$1->$2($3)
-      """
+	# CONTROLLER
 
     'PHP cake variable':
       'prefix': 'set'
@@ -73,50 +99,367 @@
             $this->set('$1', $2);
       """
 
+    'PHP cake variable compact':
+      'prefix': 'set_compact'
+      'body': """
+            $this->set(compact('$1'));
+      """
+
     'PHP cake controller':
       'prefix': 'controller'
       'body': """
-            <?PHP
-            class $1 extends AppController{
+          <?php
+          class $1 extends AppController{
 
-                //Models que irão ser utilizadas.
-                public $uses = ['$2'];
+            //Models que irão ser utilizadas.
+            public $uses = ['$2'];
 
-                //Chama API.
-                public $components = ['$3'];
+            public function beforeFilter(){
+              parent::beforeFilter();
+            };
 
-                public function $4(){};
-            }
+            public function index(){
 
-            ?>
+            };
+
+            public function create(){
+
+            };
+
+            public function edit(){
+
+            };
+          }
+
+          ?>
       """
+
+	# MODEL
 
     'PHP cake model':
       'prefix': 'model'
       'body': """
-            <?PHP
-            class $1 extends AppModel{
+              <?php
+              class $1 extends AppModel{
 
-                //Setar manualmente tabela.
-                //public function $useTable = 'nomeComoEstaNoBanco';
-
-                //Switch de Banco.
-                //public $useDbConfig = 'nucleos';
-
-                //Nome da model.
-                public $name = '$1';
-
-                //Tipo de Relação com as models em questão.
-                public $2 = ['$3'];
-
-                //Função para puxar os dados do banco.
-                public function get$1s(){
-
-                }
-            }
-
-            ?>
+              }
+              ?>
       """
+
+    'PHP cake model method before save':
+      'prefix': 'model_method_before_save'
+      'body': """
+		  public function beforeSave($options = []) {
+			  $this->data[$this->alias]['$2'];
+
+			  return true;
+		  }
+      """
+
+    'PHP cake model method after find':
+      'prefix': 'model_method_after_find'
+      'body': """
+		  public function afterFind($results, $primary = false) {
+			  foreach ($results as $key => $value) {
+				  $results[$key][$this->alias]['$1'];
+			  }
+
+			  return $results;
+		  }
+      """
+
+    'PHP cake model method findAll':
+      'prefix': 'method_findAll'
+      'body': """
+	  	$this->find('all', [
+			$1
+		]);
+      """
+
+    'PHP cake model method findFirst':
+      'prefix': 'method_findFirst'
+      'body': """
+	  	$this->find('first', [
+			$1
+		]);
+      """
+
+    'PHP cake method options conditions':
+      'prefix': 'find_conditions'
+      'body': """
+	  	'conditions' => [
+			$1
+		]
+      """
+
+    'PHP cake method options order':
+      'prefix': 'find_order'
+      'body': """
+	  	'order' => [
+			$1
+		]
+      """
+
+    'PHP cake method options group':
+      'prefix': 'find_group'
+      'body': """
+	  	'group' => [
+			$1
+		]
+      """
+
+    'PHP cake model associated belongsTo':
+      'prefix': 'model_associated_belongsTo'
+      'body': """
+		public $belongsTo = [
+			'$1',
+		];
+      """
+
+    'PHP cake model associated hasMany':
+      'prefix': 'model_associated_hasMany'
+      'body': """
+		public $hasMany = [
+			'$1',
+		];
+      """
+
+    'PHP cake model associated hasOne':
+      'prefix': 'model_associated_hasOne'
+      'body': """
+		public $hasOne = [
+			'$1',
+		];
+      """
+
+	# ATRIBUTOS
+
+    'PHP atribute messages':
+      'prefix': 'atribute_messages'
+      'body': """
+        public $messages = [
+            'saveSuccess' => "$1 salv$2 com sucesso!",
+            'saveError' => "Erro ao salvar, tente novamente!",
+            'notFound' => "$1 não encontrada!",
+        ];
+		"""
+
+    'PHP atribute states':
+      'prefix': 'atribute_states'
+      'body': """
+    	public $states = [
+	        "AC" => "Acre",
+	        "AL" => "Alagoas",
+	        "AM" => "Amazonas",
+	        "AP" => "Amapá",
+	        "BA" => "Bahia",
+	        "CE" => "Ceará",
+	        "DF" => "Distrito Federal",
+	        "ES" => "Espírito Santo",
+	        "GO" => "Goiás",
+	        "MA" => "Maranhão",
+	        "MT" => "Mato Grosso",
+	        "MS" => "Mato Grosso do Sul",
+	        "MG" => "Minas Gerais",
+	        "PA" => "Pará",
+	        "PB" => "Paraíba",
+	        "PR" => "Paraná",
+	        "PE" => "Pernambuco",
+	        "PI" => "Piauí",
+	        "RJ" => "Rio de Janeiro",
+	        "RN" => "Rio Grande do Norte",
+	        "RO" => "Rondônia",
+	        "RS" => "Rio Grande do Sul",
+	        "RR" => "Roraima",
+	        "SC" => "Santa Catarina",
+	        "SE" => "Sergipe",
+	        "SP" => "São Paulo",
+	        "TO" => "Tocantins"
+    	];
+      """
+
+    'PHP atributes countries':
+      'prefix': 'atribute_countries'
+      'body': """
+	    public $countries = [
+	        "África do Sul",
+	        "Albânia",
+	        "Alemanha",
+	        "Andorra",
+	        "Angola",
+	        "Anguilla",
+	        "Antigua",
+	        "Arábia Saudita",
+	        "Argentina",
+	        "Armênia",
+	        "Aruba",
+	        "Austrália",
+	        "Áustria",
+	        "Azerbaijão",
+	        "Bahamas",
+	        "Bahrein",
+	        "Bangladesh",
+	        "Barbados",
+	        "Bélgica",
+	        "Benin",
+	        "Bermudas",
+	        "Botsuana",
+	        "Brasil",
+	        "Brunei",
+	        "Bulgária",
+	        "Burkina Fasso",
+	        "Cabo Verde",
+	        "Camarões",
+	        "Camboja",
+	        "Canadá",
+	        "Cazaquistão",
+	        "Chade",
+	        "Chile",
+	        "China",
+	        "Cidade do Vaticano",
+	        "Colômbia",
+	        "Congo",
+	        "Coréia do Sul",
+	        "Costa do Marfim",
+	        "Costa Rica",
+	        "Croácia",
+	        "Dinamarca",
+	        "Djibuti",
+	        "Dominica",
+	        "EUA",
+	        "Egito",
+	        "El Salvador",
+	        "Emirados Árabes",
+	        "Equador",
+	        "Eritréia",
+	        "Escócia",
+	        "Eslováquia",
+	        "Eslovênia",
+	        "Espanha",
+	        "Estônia",
+	        "Etiópia",
+	        "Fiji",
+	        "Filipinas",
+	        "Finlândia",
+	        "França",
+	        "Gabão",
+	        "Gâmbia",
+	        "Gana",
+	        "Geórgia",
+	        "Gibraltar",
+	        "Granada",
+	        "Grécia",
+	        "Guadalupe",
+	        "Guam",
+	        "Guatemala",
+	        "Guiana",
+	        "Guiana Francesa",
+	        "Guiné-bissau",
+	        "Haiti",
+	        "Holanda",
+	        "Honduras",
+	        "Hong Kong",
+	        "Hungria",
+	        "Iêmen",
+	        "Ilhas Cayman",
+	        "Ilhas Cook",
+	        "Ilhas Curaçao",
+	        "Ilhas Marshall",
+	        "Ilhas Turks & Caicos",
+	        "Ilhas Virgens (brit.)",
+	        "Ilhas Virgens(amer.)",
+	        "Ilhas Wallis e Futuna",
+	        "Índia",
+	        "Indonésia",
+	        "Inglaterra",
+	        "Irlanda",
+	        "Islândia",
+	        "Israel",
+	        "Itália",
+	        "Jamaica",
+	        "Japão",
+	        "Jordânia",
+	        "Kuwait",
+	        "Latvia",
+	        "Líbano",
+	        "Liechtenstein",
+	        "Lituânia",
+	        "Luxemburgo",
+	        "Macau",
+	        "Macedônia",
+	        "Madagascar",
+	        "Malásia",
+	        "Malaui",
+	        "Mali",
+	        "Malta",
+	        "Marrocos",
+	        "Martinica",
+	        "Mauritânia",
+	        "Mauritius",
+	        "México",
+	        "Moldova",
+	        "Mônaco",
+	        "Montserrat",
+	        "Nepal",
+	        "Nicarágua",
+	        "Niger",
+	        "Nigéria",
+	        "Noruega",
+	        "Nova Caledônia",
+	        "Nova Zelândia",
+	        "Omã",
+	        "Palau",
+	        "Panamá",
+	        "Papua-nova Guiné",
+	        "Paquistão",
+	        "Peru",
+	        "Polinésia Francesa",
+	        "Polônia",
+	        "Porto Rico",
+	        "Portugal",
+	        "Qatar",
+	        "Quênia",
+	        "Rep. Dominicana",
+	        "Rep. Tcheca",
+	        "Reunion",
+	        "Romênia",
+	        "Ruanda",
+	        "Rússia",
+	        "Saipan",
+	        "Samoa Americana",
+	        "Senegal",
+	        "Serra Leone",
+	        "Seychelles",
+	        "Singapura",
+	        "Síria",
+	        "Sri Lanka",
+	        "St. Kitts & Nevis",
+	        "St. Lúcia",
+	        "St. Vincent",
+	        "Sudão",
+	        "Suécia",
+	        "Suiça",
+	        "Suriname",
+	        "Tailândia",
+	        "Taiwan",
+	        "Tanzânia",
+	        "Togo",
+	        "Trinidad & Tobago",
+	        "Tunísia",
+	        "Turquia",
+	        "Ucrânia",
+	        "Uganda",
+	        "Uruguai",
+	        "Venezuela",
+	        "Vietnã",
+	        "Zaire",
+	        "Zâmbia",
+	        "Zimbábue"
+	    ];
+
+      """
+
+
 
 
 
