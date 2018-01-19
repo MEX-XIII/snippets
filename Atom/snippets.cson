@@ -20,6 +20,37 @@
 # Atom Flight Manual:
 # http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
 
+'.source.scss':
+	'Reset':
+		'prefix': 'reset'
+		'body': """
+		*{
+			padding: 0;
+			margin: 0;
+
+			font-family: $font4;
+		}
+
+		body {
+			overflow-x: hidden;
+		}
+
+		.pointer {cursor: pointer;}
+		.both    {clear: both;}
+		textarea {resize: none;}
+
+		ul {
+			list-style: none;
+			margin: 0;
+		}
+
+		a {
+			text-decoration: none;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		"""
 
 '.source.js':
     'Console log':
