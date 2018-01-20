@@ -55,5 +55,16 @@
 			"}"
 		],
 		"description": "Cria um reset para o css"
+	},
+
+	"Centraliza item":{
+		"prefix": "centraliza_vertical",
+		"body": [
+			"top: 50%;",
+			"left: 50%",
+			"",
+			"transform: translate(-50%,-50%);",
+		],
+		"description": "Centraliza verticalmente e horizontalmente o item"
 	}
 }
