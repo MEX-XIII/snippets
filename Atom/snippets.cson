@@ -499,6 +499,28 @@
 		"""
 
 
+	# -----------------> WORDPRESS
+
+	'WORDPRESS function the_loop':
+		'prefix': 'wordpress_the_loop'
+		'body': """
+			<?php
+				$args = array(
+					'post_type' => '$1'
+				);
+
+				$loop = new WP_Query( $args );
+				if( $loop->have_posts() ){
+					while ( $loop->have_posts() ) : $loop->the_post();
+						wc_get_template_part( '$2', '$3' );
+					endwhile;
+				} else {
+					echo _( 'No $1 found' );
+				}
+				wp_reset_postdata();
+			?>
+		  """
+
 
 
 
