@@ -1,24 +1,8 @@
-# Your snippets
-#
-# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
-# expand the prefix into a larger code block with templated values.
-#
-# You can create a new snippet in this file by typing "snip" and then hitting
-# tab.
-#
-# An example CoffeeScript snippet to expand log to console.log:
-#
-# '.source.coffee':
-#   'Console log':
-#     'prefix': 'log'
-#     'body': 'console.log $1'
-#
-# Each scope (e.g. '.source.coffee' above) can only be declared once.
-#
-# This file uses CoffeeScript Object Notation (CSON).
-# If you are unfamiliar with CSON, you can read more about it in the
-# Atom Flight Manual:
-# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+# SNIPPETS PADRONIZADOS PARA ICLOUDS
+# AUTHOR: EFRAIM ANDRADE
+
+# -------------> SASS <-------------
+
 
 '.source.scss':
 	'Reset':
@@ -51,6 +35,9 @@
 			}
 		}
 		"""
+
+	# -------------> JAVASCRIPT <-------------
+
 
 '.source.js':
     'Console log':
@@ -96,7 +83,7 @@
         """
 
 
-	# -------------> PHP
+	# -------------> PHP <-------------
 
 '.text.php, .text.html.php, .text.ctp.php':
 
@@ -113,6 +100,10 @@
     'PHP debug':
       'prefix': 'debug'
       'body': 'debug($1);'
+
+    'PHP echo pre':
+      'prefix': 'pre'
+      'body': "<?php echo '<pre>'; print_r($1); '</pre>'; ?>"
 
     'PHP function':
       'prefix': 'function'
@@ -498,12 +489,13 @@
 
 		"""
 
+	# -----------------> WORDPRESS <-----------------
 
-	# -----------------> WORDPRESS
+	# WORDPRESS FUNCTIONS
 
-	'WORDPRESS function the_loop':
-		'prefix': 'wordpress_the_loop'
-		'body': """
+    'WORDPRESS function the_loop':
+      'prefix': 'wordpress_function_the_loop'
+      'body': """
 			<?php
 				$args = array(
 					'post_type' => '$1'
@@ -519,7 +511,77 @@
 				}
 				wp_reset_postdata();
 			?>
-		  """
+		"""
+
+    'WORDPRESS function index':
+      'prefix': 'wordpress_function_index'
+      'body': """
+			<?php include('header.php'); ?>
+
+			$1
+
+			<?php include('footer.php');?>
+		"""
+
+    'WORDPRESS function add_theme_support':
+      'prefix': 'wordpress_function_add_theme_support'
+      'body': "add_theme_support('$1');"
+
+    'WORDPRESS function get_template_directory_uri':
+      'prefix': 'wordpress_function_get_template_directory_uri'
+      'body': "get_template_directory_uri();"
+
+    'WORDPRESS function get_wc_cookie_posts':
+      'prefix': 'wordpress_function_get_wc_cookie_posts'
+      'body': """
+		    function get_wc_cookie_posts(){
+				if ( !isset( $_COOKIE['woocommerce_recently_viewed'] ) || empty( $_COOKIE['woocommerce_recently_viewed'] ) )
+					return false;
+				$viewed_products = explode( '|', $_COOKIE['woocommerce_recently_viewed'] );
+				$viewed_products = array_reverse( array_filter( array_map( 'absint', $viewed_products ) ) );
+				return $viewed_products;
+		    }
+		"""
+
+    'WORDPRESS function get_excerpt':
+      'prefix': 'wordpress_function_get_excerpt'
+      'body': """
+		    function get_excerpt($limit, $source = null){
+
+		        if($source == "content" ? ($excerpt = get_the_content()) : ($excerpt = get_the_excerpt()));
+		            $excerpt = preg_replace(" (\[.*?\])",'',$excerpt);
+		            $excerpt = strip_shortcodes($excerpt);
+		            $excerpt = strip_tags($excerpt);
+		            $excerpt = substr($excerpt, 0, $limit);
+		            $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+		            $excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
+		            $excerpt = $excerpt.'...';
+		            return $excerpt;
+		    }
+		"""
+
+	# WORDPRESS VARIABLES
+
+    'WORDPRESS variable globals':
+      'prefix': 'wordpress_variable_globals'
+      'body': "<?= $GLOBALS['server'] ?>"
+
+    'WORDPRESS variable query':
+      'prefix': 'wordpress_variable_query'
+      'body': "$query = new WP_Query( $args );"
+
+  	# WORDPRESS ARGS
+
+    'WORDPRESS args cookie post':
+      'prefix': 'wordpress_args_cookie_post'
+      'body': """
+		  $args = array (
+			  'post_type'              => '$1',
+			  'posts_per_page'         => $2,
+			  'post__in'               => get_wc_cookie_posts()
+		  );
+		"""
+
 
 
 
