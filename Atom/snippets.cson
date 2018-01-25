@@ -131,7 +131,7 @@
       'prefix': 'controller'
       'body': """
           <?php
-          class $1 extends AppController{
+          class $1Controller extends AppController{
 
             //Models que irão ser utilizadas.
             public $uses = ['$2'];
