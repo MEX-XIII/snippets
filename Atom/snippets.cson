@@ -582,6 +582,26 @@
 		  );
 		"""
 
+	# -----------------> HTML TEMPLATES <-----------------
+
+	# TEMPLATE Moltran
+
+    'HTML TEMPLATE moltran basic':
+      'prefix': 'html_template_moltran_basic'
+      'body': """
+<div class="content-page"> <!-- Moltran begin-->
+	<div class="content"> <!-- Start content -->
+		<div class="container">
+			<div class="row">  <!-- Moltran end-->
+
+
+         </div>
+      </div> <!-- container -->
+   </div> <!-- content -->
+</div>
+		"""
+
+
 
 
 
