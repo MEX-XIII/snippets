@@ -5,7 +5,7 @@
 
 
 '.source.scss':
-	'Reset':
+	'SASS Reset':
 		'prefix': 'reset'
 		'body': """
 		*{
@@ -34,6 +34,60 @@
 				text-decoration: none;
 			}
 		}
+		"""
+
+	'SASS Formula 576 PX to %':
+		'prefix': 'sass_576_pxTo%'
+		'body': """
+			$1px / 576px * 100%
+		"""
+
+	'SASS Formula 720 PX to %':
+		'prefix': 'sass_720_pxTo%'
+		'body': """
+			$1px / 720px * 100%
+		"""
+
+	'SASS Formula 960 PX to %':
+		'prefix': 'sass_960_pxTo%'
+		'body': """
+			$1px / 960px * 100%
+		"""
+
+	'SASS Formula 1280 PX to %':
+		'prefix': 'sass_1280_pxTo%'
+		'body': """
+			$1px / 1280px * 100%
+		"""
+
+	'SASS Formula 1440 PX to %':
+		'prefix': 'sass_1440_pxTo%'
+		'body': """
+			$1px / 1440px * 100%
+		"""
+
+	'SASS Formula 1920 PX to %':
+		'prefix': 'sass_1920_pxTo%'
+		'body': """
+			$1px / 1920px * 100%
+		"""
+
+	'SASS Display flex':
+		'prefix': 'sass_display_flex'
+		'body': """
+			display: flex;
+			flex-direction: $1;
+			justify-content: $2;
+		"""
+
+	'SASS Padrões comentario only':
+		'prefix': 'sass_padrao_comentario'
+		'body': """
+			/* POSICIONAMENTO */
+
+			/* DISPLAY & MODELO DE CAIXA */
+
+			/* OUTROS */
 		"""
 
 	# -------------> JAVASCRIPT <-------------
