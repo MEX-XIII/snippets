@@ -136,6 +136,52 @@
 
         """
 
+    'Ajax Jquery':
+        'prefix': 'ajax_jquery'
+        'body': """
+	$.ajax( {
+			type: "${1: GET or POST or PUT or DELETE ..}",
+			url: "${2: API address}",
+			success: function( response ) {
+
+				var response = JSON.parse( response );
+
+				${4: Execute Something like a function}
+
+			}
+		} );
+
+        """
+
+    'Ajax JS Pure':
+        'prefix': 'ajax_pure'
+        'body': """
+
+        var xhr = new XMLHttpRequest();
+
+		xhr.open( "${1: GET or POST or PUT or DELETE ..}", "${2: API address}" );
+
+		xhr.addEventListener(
+			"load",
+			function () {
+
+				if ( xhr.status == 200 ) {
+
+					var response = xhr.responseText;
+					var ${3: Return}s = JSON.parse( response );
+
+					${4: Execute Something like a function}
+
+				}else {
+
+					${5: Put some error here}
+
+				}
+
+			}
+		);
+        """
+
 
 	# -------------> PHP <-------------
 
