@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+
+</head>
+<body>
+
+    <script>
+        $(document).ready( () => $('#dataTable').dataTable() );
+    </script>
+
+    <div>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Matricula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Efraim Andrade</td>
+                    <td>8460457</td>
+                </tr>
+                <tr>
+                    <td>Hackel com H</td>
+                    <td>45656415263</td>
+                </tr>
+                <tr>
+                    <td>Nilson Sevilha</td>
+                    <td>56456456</td>
+                </tr>
+                <tr>
+                    <td>Raphael Felipe</td>
+                    <td>51564488</td>
+                </tr>
+                <tr>
+                    <td>Leandro Santos</td>
+                    <td>5644568747</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

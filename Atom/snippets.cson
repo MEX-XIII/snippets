@@ -136,6 +136,22 @@
 
         """
 
+    'JAVSCRIPT ajax responses type':
+        'prefix': 'ajax_responses_type'
+        'body': """
+		/*
+		0: requisição ainda não iniciada
+
+		1: conexão com o servidor estabelecida
+
+		2: requisição recebida
+
+		3: processando requisição
+
+		4: requisição está concluída e a resposta está pronta
+		*/
+        """
+
     'Ajax Jquery':
         'prefix': 'ajax_jquery'
         'body': """
@@ -153,33 +169,63 @@
 
         """
 
-    'Ajax JS Pure':
-        'prefix': 'ajax_pure'
+    'Ajax JS Pure GET':
+        'prefix': 'ajax_pure_get'
         'body': """
+		var xhr = new XMLHttpRequest();
 
-        var xhr = new XMLHttpRequest();
+		xhr.open( "GET", "${1: url}" );
 
-		xhr.open( "${1: GET or POST or PUT or DELETE ..}", "${2: API address}" );
+		xhr.onreadystatechange = () => {
 
-		xhr.addEventListener(
-			"load",
-			function () {
+			if ( xhr.readyState == 4 ) {
 
 				if ( xhr.status == 200 ) {
 
-					var response = xhr.responseText;
-					var ${3: Return}s = JSON.parse( response );
-
-					${4: Execute Something like a function}
+					let dados = JSON.parse( xhr.responseText );
 
 				}else {
 
-					${5: Put some error here}
+					console.log( `Não foi possivel receber dados dos servidor error: ${ xhr.responseText }` );
 
 				}
 
 			}
-		);
+
+		};
+
+		xhr.send();
+
+        """
+
+    'Ajax JS Pure POST':
+        'prefix': 'ajax_pure_post'
+        'body': """
+		var xhr = new XMLHttpRequest();
+
+		xhr.open( "POST", "${1: url}", true );
+
+		xhr.setRequestHeader ( "Content-type", "application/json" );
+
+		xhr.onreadystatechange = () => {
+
+			if ( xhr.readyState == 4 ) {
+
+				if ( xhr.status == 200 ) {
+
+					alert( 'Dado enviado com sucesso' );
+
+				} else {
+
+					alert( `Não foi possível enviar o dadoo: ${xhr.responseText}` );
+
+				}
+
+			}
+
+		};
+
+		xhr.send( JSON.stringify( ${2: Array de Dados} ) );
         """
 
 
